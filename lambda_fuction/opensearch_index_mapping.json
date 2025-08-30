@@ -1,0 +1,135 @@
+{
+  "mappings": {
+    "properties": {
+      "document_id": {
+        "type": "keyword"
+      },
+      "document_type": {
+        "type": "keyword",
+        "index": true
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "standard",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "content_text": {
+        "type": "text",
+        "analyzer": "standard"
+      },
+      "summary": {
+        "type": "text",
+        "analyzer": "standard"
+      },
+      "skills": {
+        "type": "keyword",
+        "index": true
+      },
+      "experience_years": {
+        "type": "integer"
+      },
+      "location": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "employment_type": {
+        "type": "keyword"
+      },
+      "company_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "salary_range": {
+        "type": "object",
+        "properties": {
+          "min": {"type": "integer"},
+          "max": {"type": "integer"},
+          "currency": {"type": "keyword"}
+        }
+      },
+      "education_level": {
+        "type": "keyword"
+      },
+      "industry": {
+        "type": "keyword"
+      },
+      "contact_info": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "keyword",
+            "index": false
+          },
+          "phone": {
+            "type": "keyword",
+            "index": false
+          }
+        }
+      },
+      "embedding_vector": {
+        "type": "knn_vector",
+        "dimension": 1536,
+        "method": {
+          "name": "hnsw",
+          "space_type": "cosinesimilarity",
+          "engine": "lucene",
+          "parameters": {
+            "ef_construction": 128,
+            "m": 24
+          }
+        }
+      },
+      "created_date": {
+        "type": "date",
+        "format": "strict_date_optional_time||epoch_millis"
+      },
+      "last_updated": {
+        "type": "date",
+        "format": "strict_date_optional_time||epoch_millis"
+      },
+      "s3_uri": {
+        "type": "keyword",
+        "index": false
+      },
+      "processing_status": {
+        "type": "keyword"
+      },
+      "metadata": {
+        "type": "object",
+        "dynamic": true
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "number_of_shards": 2,
+      "number_of_replicas": 1,
+      "knn": true,
+      "knn.algo_param.ef_search": 100
+    },
+    "analysis": {
+      "analyzer": {
+        "skill_analyzer": {
+          "type": "custom",
+          "tokenizer": "keyword",
+          "filter": ["lowercase", "trim"]
+        }
+      }
+    }
+  }
+}
