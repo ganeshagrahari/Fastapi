@@ -41,4 +41,3 @@ def sort_patints(sort_by: str = Query(...,description=" Sort on the basis of hei
     return sorted_data
 
 
-  
