@@ -1,6 +1,6 @@
 {
     "P001": {
-        "name": "Ananya Verma",
+        "name": "Honey",
         "city": "Guwahati",
         "age": 28,
         "gender": "female",
@@ -48,15 +48,5 @@
         "weight": 75,
         "bmi": 31.22,
         "verdict": "Obese"
-    },
-    "P006": {
-        "name": "Ganesh",
-        "city": "Lucknow",
-        "age": 25,
-        "gender": "male",
-        "height": 1.5,
-        "weight": 65.0,
-        "bmi": 28.89,
-        "verdict": "Normal"
     }
 }
